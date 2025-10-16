@@ -36,11 +36,11 @@ class Config:
     CITIES_CSV_PATH: str = r"weather_locations_with_keys.csv" # Assumes CSV is in repo root
 
     # 🚨 CHANGE: This is now a reference, not a hardcoded placeholder
-    SHEET_URL: str = "https://docs.google.com/spreadsheets/d/1k0FrlQlElrmqUOBK_ub638fmeFi7RIaUUHLo-WCqSd4/edit?gid=121009280#gid=121009280"
+    SHEET_URL: str = "https://docs.google.com/spreadsheets/d/17NOMeO6L2IyRMk-ksiFMzu72wx5YJxwvG3A_9VznEWM/edit?gid=0#gid=0"
 
-    OUTPUT_GSHEET_NAME: str = "Weather_Forecast_Dump"
-    DAILY_SHEET_NAME: str = "5_Day_Forecast"
-    HOURLY_SHEET_NAME: str = "12_Hour_Forecast"
+    OUTPUT_GSHEET_NAME: str = "Weather Forecast Dashboard"
+    DAILY_SHEET_NAME: str = "5days_raw"
+    HOURLY_SHEET_NAME: str = "12hrs_raw"
     MAX_RETRIES: int = 3
     TIMEOUT: int = 10
 
@@ -50,7 +50,7 @@ class Config:
         key = os.environ.get('ACCUWEATHER_API_KEY')
         if not key:
              # Fallback to the hardcoded key if the environment variable is missing (e.g., for local testing)
-             key = "zpka_d1779ec8dd3042bb98bc55d20d48ba59_e416342f"
+             key = "zpka_79543de97af6496b837da6205ac4edfd_27f3ba0d"
 
         self.API_KEYS = [key]
 
