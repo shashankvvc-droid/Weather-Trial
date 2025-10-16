@@ -2,9 +2,12 @@ name: 🗓️ Daily Weather Scraper
 
 on:
   schedule:
-    # 🎯 INDUCED CHANGE: Changed from '0 10 * * *' (10 AM UTC) to '0 14 * * *' (2 PM UTC)
-    # Cron format: minute (0-59) hour (0-23) day_of_month (1-31) month (1-12) day_of_week (0-6)
-    - cron: '0 14 * * *' 
+    # 🎯 Trigger 1: 6:00 AM UTC (11:30 AM IST) - Runs in the morning
+    - cron: '0 6 * * *' 
+    
+    # 🎯 Trigger 2: 6:00 PM UTC (11:30 PM IST) - Runs in the evening/night
+    - cron: '0 18 * * *'
+    
   workflow_dispatch:
     # Allows manual trigger from the GitHub Actions tab
 
@@ -27,7 +30,6 @@ jobs:
           
       - name: ⚙️ Run Python Scraper
         env:
-          # Pass secrets as environment variables to the script
           GSPREAD_SERVICE_ACCOUNT: ${{ secrets.GSPREAD_SERVICE_ACCOUNT }}
           ACCUWEATHER_API_KEY: ${{ secrets.ACCUWEATHER_API_KEY }}
         run: |
