@@ -36,7 +36,7 @@ class Config:
     CITIES_CSV_PATH: str = r"weather_locations_with_keys.csv" # Assumes CSV is in repo root
 
     # 🚨 CHANGE: This is now a reference, not a hardcoded placeholder
-    SHEET_URL: str = "https://docs.google.com/spreadsheets/d/17NOMeO6L2IyRMk-ksiFMzu72wx5YJxwvG3A_9VznEWM/edit?gid=0#gid=0"
+    SHEET_URL: str = "https://docs.google.com/spreadsheets/d/17NOMeO6L2IyRMk-ksiFMzu72wx5YJxwvG3A_9VznEWM/edit?gid=1780690497#gid=1780690497"
 
     OUTPUT_GSHEET_NAME: str = "Weather Forecast Dashboard"
     DAILY_SHEET_NAME: str = "5days_raw"
