@@ -2,11 +2,11 @@ name: 🗓️ Daily Weather Scraper
 
 on:
   schedule:
-    # 🎯 Trigger 1: 6:00 AM UTC (11:30 AM IST) - Runs in the morning
-    - cron: '0 6 * * *' 
+    # 🎯 Trigger 1: 5:45 AM UTC (11:15 AM IST) - Running 15 minutes early for morning reliability
+    - cron: '45 5 * * *' 
     
-    # 🎯 Trigger 2: 6:00 PM UTC (11:30 PM IST) - Runs in the evening/night
-    - cron: '0 18 * * *'
+    # 🎯 Trigger 2: 5:45 PM UTC (11:15 PM IST) - Running 15 minutes early for evening reliability
+    - cron: '45 17 * * *'
     
   workflow_dispatch:
     # Allows manual trigger from the GitHub Actions tab
@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🐍 Set up Python
-        uses: actions/setup-python@v5
+        uses: actions:setup-python@v5
         with:
           python-version: '3.x'
 
