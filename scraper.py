@@ -50,7 +50,7 @@ class Config:
         key = os.environ.get('ACCUWEATHER_API_KEY')
         if not key:
              # Fallback to the hardcoded key if the environment variable is missing (e.g., for local testing)
-             key = "zpka_79543de97af6496b837da6205ac4edfd_27f3ba0d"
+             key = "zpka_f6a4714c10654ad29bd6b2d793b5b9f5_acf75188"
 
         self.API_KEYS = [key]
 
@@ -159,6 +159,7 @@ def process_daily_data(city_details: Dict, api_response: Dict) -> List[Dict]:
     if not api_response or 'DailyForecasts' not in api_response: return rows
     for day in api_response['DailyForecasts']:
         try:
+            # New data is consistently formatted as MM/DD/YYYY (e.g., 11/02/2025)
             formatted_date = datetime.fromisoformat(day.get('Date', '')).strftime('%m/%d/%Y')
         except (ValueError, TypeError):
             formatted_date = day.get('Date', '')[:10]
@@ -308,6 +309,27 @@ class GoogleSheetsManager:
 
             if existing_data:
                 existing_df = pd.DataFrame(existing_data)
+                
+                # 🎯 CRITICAL FIX: Standardize the Date format in the existing data
+                if 'Date' in existing_df.columns:
+                    try:
+                        # 1. Convert the existing date strings (padded or unpadded, e.g., 11/2/2025) 
+                        #    into consistent datetime objects.
+                        existing_df['Date'] = pd.to_datetime(existing_df['Date'], errors='coerce')
+                        
+                        # 2. Convert ALL dates back into the standard padded 'MM/DD/YYYY' string format (e.g., 11/02/2025).
+                        existing_df['Date'] = existing_df['Date'].dt.strftime('%m/%d/%Y')
+                    except Exception as e:
+                        print(f"WARNING: Date standardization failed on existing data: {e}. Deduplication may be impaired.")
+                        
+                # Ensure all key columns (including the standardized 'Date') are treated as stripped strings for matching
+                key_cols = ['City', 'Zone', 'Date', 'Period'] 
+                for col in key_cols:
+                    if col in existing_df.columns:
+                        existing_df[col] = existing_df[col].astype(str).str.strip()
+                    if col in df.columns:
+                        df[col] = df[col].astype(str).str.strip()
+
                 combined_df = pd.concat([existing_df, df], ignore_index=True, sort=False)
             else:
                 combined_df = df
