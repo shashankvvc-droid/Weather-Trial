@@ -50,7 +50,7 @@ class Config:
         key = os.environ.get('ACCUWEATHER_API_KEY')
         if not key:
              # Fallback to the hardcoded key if the environment variable is missing (e.g., for local testing)
-             key = "zpka_f6a4714c10654ad29bd6b2d793b5b9f5_acf75188"
+             key = "zpka_edfba019edec46f5a17875eaa01fb437_51f88b12"
 
         self.API_KEYS = [key]
 
