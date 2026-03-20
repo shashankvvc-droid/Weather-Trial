@@ -29,7 +29,7 @@ class Config:
     BASE_URL: str = "http://dataservice.accuweather.com"
     CITIES_CSV_PATH: str = r"weather_locations_with_keys.csv" # Assumes CSV is in repo root
 
-    SHEET_URL: str = "https://docs.google.com/spreadsheets/d/17NOMeO6L2IyRMk-ksiFMzu72wx5YJxwvG3A_9VznEWM/edit"
+    SHEET_URL: str = "https://docs.google.com/spreadsheets/d/10j8OyNxJg8McjEThKmyf1VQkfUZeLmTdAQqwopt3EHo/edit?gid=39425512#gid=39425512&fvid=2018402946"
 
     OUTPUT_GSHEET_NAME: str = "Weather Forecast Dashboard"
     DAILY_SHEET_NAME: str = "5days_raw"
