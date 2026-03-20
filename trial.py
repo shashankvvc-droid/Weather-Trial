@@ -11,19 +11,19 @@ SHEET_URL = "https://docs.google.com/spreadsheets/d/17NOMeO6L2IyRMk-ksiFMzu72wx5
 def test_google_sheets_auth():
     print("--- Starting Base64 Auth Diagnostic ---")
     
-    # SCENARIO A: Environment variable is missing
-    creds_b64 = os.environ.get('GSPREAD_SERVICE_ACCOUNT_B64')
-    if not creds_b64:
-        print("🛑 LOG A: Missing Secret. The 'GSPREAD_SERVICE_ACCOUNT_B64' environment variable is empty.")
+    # 🎯 REVERTED: Looking for the original secret name
+    creds_encoded = os.environ.get('GSPREAD_SERVICE_ACCOUNT')
+    if not creds_encoded:
+        print("🛑 LOG A: Missing Secret. The 'GSPREAD_SERVICE_ACCOUNT' environment variable is empty.")
         return
 
     # SCENARIO B: Base64 Decode failure
     try:
         # Decode the Base64 string back into standard UTF-8 JSON text
-        creds_json = base64.b64decode(creds_b64).decode('utf-8')
+        creds_json = base64.b64decode(creds_encoded).decode('utf-8')
         print("✅ Base64 string decoded successfully.")
     except Exception as e:
-        print(f"🛑 LOG B: Base64 Decode Failed. The string might be incomplete. Details: {e}")
+        print(f"🛑 LOG B: Base64 Decode Failed. The string might be incomplete or not valid Base64. Details: {e}")
         return
 
     # SCENARIO C: JSON Parse failure
