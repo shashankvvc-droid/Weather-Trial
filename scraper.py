@@ -43,7 +43,7 @@ class Config:
     def __post_init__(self):
         key = os.environ.get('ACCUWEATHER_API_KEY')
         if not key:
-             key = "zpka_a3888a38fa724690864c43deabada9ea_4fcc8a63"
+             key = "zpka_c11eefdc3da04b2497156acbd0f7871d_fc4832ba"
         self.API_KEYS = [key]
 
     @staticmethod
