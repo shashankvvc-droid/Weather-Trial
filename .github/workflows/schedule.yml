@@ -33,4 +33,4 @@ jobs:
           GSPREAD_SERVICE_ACCOUNT: ${{ secrets.GSPREAD_SERVICE_ACCOUNT }}
           ACCUWEATHER_API_KEY: ${{ secrets.ACCUWEATHER_API_KEY }}
         run: |
-          python trial.py
+          python scraper.py
