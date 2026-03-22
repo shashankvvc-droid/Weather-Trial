@@ -1,36 +1,36 @@
-name: 🗓️ Daily Weather Scraper
+# name: 🗓️ Daily Weather Scraper
 
-on:
-  schedule:
-    # Trigger 1: 5:45 AM UTC (11:15 AM IST)
-    - cron: '45 5 * * *'  
+# on:
+#   schedule:
+#     # Trigger 1: 5:45 AM UTC (11:15 AM IST)
+#     - cron: '45 5 * * *'  
     
-    # Trigger 2: 5:45 PM UTC (11:15 PM IST)
-    - cron: '45 17 * * *'
+#     # Trigger 2: 5:45 PM UTC (11:15 PM IST)
+#     - cron: '45 17 * * *'
     
-  workflow_dispatch:
-    # Allows manual trigger from the GitHub Actions tab
+#   workflow_dispatch:
+#     # Allows manual trigger from the GitHub Actions tab
 
-jobs:
-  run_scraper:
-    runs-on: ubuntu-latest
+# jobs:
+#   run_scraper:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: ⬇️ Checkout Repository
-        uses: actions/checkout@v4
+#     steps:
+#       - name: ⬇️ Checkout Repository
+#         uses: actions/checkout@v4
 
-      - name: 🐍 Set up Python
-        uses: actions/setup-python@v5  # Corrected use of actions:setup-python to actions/setup-python
-        with:
-          python-version: '3.x'
+#       - name: 🐍 Set up Python
+#         uses: actions/setup-python@v5  # Corrected use of actions:setup-python to actions/setup-python
+#         with:
+#           python-version: '3.x'
 
-      - name: 📦 Install Dependencies
-        run: |
-          pip install pandas numpy requests gspread dataclasses
+#       - name: 📦 Install Dependencies
+#         run: |
+#           pip install pandas numpy requests gspread dataclasses
           
-      - name: ⚙️ Run Python Scraper
-        env:
-          GSPREAD_SERVICE_ACCOUNT: ${{ secrets.GSPREAD_SERVICE_ACCOUNT }}
-          ACCUWEATHER_API_KEY: ${{ secrets.ACCUWEATHER_API_KEY }}
-        run: |
-          python scraper.py
+#       - name: ⚙️ Run Python Scraper
+#         env:
+#           GSPREAD_SERVICE_ACCOUNT: ${{ secrets.GSPREAD_SERVICE_ACCOUNT }}
+#           ACCUWEATHER_API_KEY: ${{ secrets.ACCUWEATHER_API_KEY }}
+#         run: |
+#           python scraper.py
