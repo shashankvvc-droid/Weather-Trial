@@ -34,7 +34,7 @@ class Config:
 
     SHEET_URL: str = "https://docs.google.com/spreadsheets/d/10j8OyNxJg8McjEThKmyf1VQkfUZeLmTdAQqwopt3EHo/edit?gid=39425512#gid=39425512&fvid=2018402946"
 
-    OUTPUT_GSHEET_NAME: str = "Weather Forecast Dashboard"
+    OUTPUT_GSHEET_NAME: str = "Weather Forecast"
     DAILY_SHEET_NAME: str = "5days_raw"
     HOURLY_SHEET_NAME: str = "12hrs_raw"
     MAX_RETRIES: int = 1 # 🎯 Reduced retries to fail faster on quota limits
